@@ -61,7 +61,7 @@ touch /var/log/xray/error.log
 touch /var/log/xray/access2.log
 touch /var/log/xray/error2.log
 # / / Ambil Xray Core Version Terbaru
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.5.6
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.7.3
 
 
 
@@ -112,7 +112,7 @@ cat > /etc/xray/config.json << END
        "streamSettings":{
          "network": "ws",
             "wsSettings": {
-                "path": "/xrayws"
+                "path": "/worryfree"
           }
         }
      },
@@ -131,7 +131,7 @@ cat > /etc/xray/config.json << END
        "streamSettings":{
          "network": "ws",
             "wsSettings": {
-                "path": "/xrayvws"
+                "path": "/worryfree"
           }
         }
      },
@@ -139,7 +139,7 @@ cat > /etc/xray/config.json << END
       "listen": "/run/xray/trojan_ws.sock",
       "protocol": "trojan",
       "settings": {
-          "decryption":"none",		
+          "decryption":"none",    
            "clients": [
               {
                  "password": "${uuid}"
@@ -175,7 +175,7 @@ cat > /etc/xray/config.json << END
                "path": "/xrayssws"
            }
         }
-     },	
+     }, 
       {
         "listen": "/run/xray/vless_grpc.sock",
         "protocol": "vless",
@@ -253,7 +253,7 @@ cat > /etc/xray/config.json << END
            "serviceName": "ss-grpc"
           }
        }
-    }	
+    } 
   ],
   "outbounds": [
     {
@@ -369,7 +369,7 @@ cat >/etc/nginx/conf.d/xray.conf <<EOF
              listen 80;
              listen [::]:80;
              listen 443 ssl http2 reuseport;
-             listen [::]:443 http2 reuseport;	
+             listen [::]:443 http2 reuseport; 
              server_name $domain;
              ssl_certificate /etc/xray/xray.crt;
              ssl_certificate_key /etc/xray/xray.key;
